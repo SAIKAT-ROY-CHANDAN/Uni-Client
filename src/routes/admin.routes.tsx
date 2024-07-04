@@ -1,4 +1,3 @@
-
 import AdminDashboard from '../pages/admin/AdminDashboard';
 import CreateAdmin from '../pages/admin/CreateAdmin';
 import CreateFaculty from '../pages/admin/CreateFaculty';
@@ -64,7 +63,7 @@ export const adminPaths = [
 //   []
 // );
 
-//* Programatical way
+//* Program-tical way
 
 // export const adminRoutes = adminPaths.reduce((acc: TRoute[], item) => {
 //   if (item.path && item.element) {
