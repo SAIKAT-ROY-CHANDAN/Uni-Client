@@ -1,11 +1,11 @@
 import { Button } from "antd";
 import { FieldValues, useForm } from "react-hook-form";
-import { useLoginMutation } from "../redux/features/authApi";
 import { useAppDispatch } from "../redux/hooks";
-import { setUser, TUser } from "../redux/features/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { useLoginMutation } from "../redux/features/auth/authApi";
+import { setUser, TUser } from "../redux/features/auth/authSlice";
 
 const Login = () => {
 

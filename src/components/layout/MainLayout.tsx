@@ -2,7 +2,7 @@ import { Button, Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useAppDispatch } from '../../redux/hooks';
-import { logout } from '../../redux/features/authSlice';
+import { logout } from '../../redux/features/auth/authSlice';
 const { Header, Content } = Layout;
 
 const MainLayout = () => {
