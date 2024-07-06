@@ -1,26 +1,29 @@
-import { Button } from "antd";
-import { FieldValues, useForm } from "react-hook-form";
+import { Button, Row } from "antd";
+import { FieldValues } from "react-hook-form";
 import { useAppDispatch } from "../redux/hooks";
 import { verifyToken } from "../utils/verifyToken";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { setUser, TUser } from "../redux/features/auth/authSlice";
+import PHForm from "../components/form/PHForm";
+import PHInput from "../components/form/PHInput";
+
+
 
 const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch()
-  const { register, handleSubmit } = useForm();
   const [login] = useLoginMutation();
 
 
   const onsubmit = async (data: FieldValues) => {
     const toastId = toast.loading('logging in')
-
+    console.log(data.userId);
     try {
       const userInfo = {
-        id: data.id,
+        id: data.userId,
         password: data.password
       }
       const res = await login(userInfo).unwrap()
@@ -38,17 +41,13 @@ const Login = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onsubmit)}>
-      <div>
-        <label htmlFor="id">ID:</label>
-        <input type="text" id="id" {...register('id')} />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input type="text" id="password" {...register('password')} />
-      </div>
-      <Button htmlType="submit">Login</Button>
-    </form>
+    <Row justify='center' align='middle' style={{ height: '100vh' }}>
+      <PHForm onSubmit={onsubmit}>
+        <PHInput type='text' name='userId' label='Id' />
+        <PHInput type="text" name="password" label='Password' />
+        <Button htmlType="submit">Login</Button>
+      </PHForm>
+    </Row>
   );
 };
 

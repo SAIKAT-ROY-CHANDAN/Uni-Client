@@ -10,15 +10,15 @@ const { Sider } = Layout;
 const Sidebar = () => {
 
   let sidebarItems
-
+  
+  const user = useAppSelector(selectCurrentUser)
   const userRole = {
     ADMIN: 'admin',
     FACULTY: 'faculty',
     STUDENT: 'student',
   }
 
-  const user = useAppSelector(selectCurrentUser)
-  console.log(user);
+ 
 
   switch (user!.role) {
     case userRole.ADMIN:
