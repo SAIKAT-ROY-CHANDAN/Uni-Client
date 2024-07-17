@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     BaseQueryApi,
     BaseQueryFn,
@@ -8,6 +9,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 import { logout, setUser } from "../features/auth/authSlice";
+import { toast } from "sonner";
 
 
 const baseQuery = fetchBaseQuery({
@@ -29,7 +31,9 @@ const baseQueryWithRefreshToken: BaseQueryFn<FetchArgs, BaseQueryApi, Definition
     async (args, api, extraOptions): Promise<any> => {
         let result = await baseQuery(args, api, extraOptions);
 
-        console.log(result);
+        if(result?.error?.status === 404){
+            toast.error('Not Found')
+        }
 
         if (result.error?.status === 401) {
             console.log('sending refresh token');
