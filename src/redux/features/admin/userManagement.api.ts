@@ -1,4 +1,4 @@
-import { TQueryParam, TResponseRedux } from "../../../types";
+import { TQueryParam, TResponseRedux, TStudent } from "../../../types";
 import { baseApi } from "../../api/baseApi";
 
 const userManagementApi = baseApi.injectEndpoints({
@@ -19,7 +19,7 @@ const userManagementApi = baseApi.injectEndpoints({
                     params: params,
                 };
             },
-            transformResponse: (response: TResponseRedux<any>) => {
+            transformResponse: (response: TResponseRedux<TStudent[]>) => {
                 return {
                     data: response.data,
                     meta: response.meta,
@@ -34,6 +34,7 @@ const userManagementApi = baseApi.injectEndpoints({
             }),
         }),
     }),
-})
+});
 
-export const { useAddStudentMutation, useGetAllStudentsQuery } = userManagementApi
+export const { useAddStudentMutation, useGetAllStudentsQuery } =
+    userManagementApi;
